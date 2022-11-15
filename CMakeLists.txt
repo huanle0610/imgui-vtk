@@ -100,3 +100,8 @@ target_link_libraries(${EXEC_NAME} imgui_vtk_viewer)
 if (UNIX AND NOT APPLE)
   target_link_libraries(${EXEC_NAME} ${CMAKE_THREAD_LIBS_INIT} ${X11_LIBRARIES} ${CMAKE_DL_LIBS})
 endif()
+
+add_custom_command(TARGET ${EXEC_NAME} POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_RUNTIME_DLLS:${EXEC_NAME}> $<TARGET_FILE_DIR:${EXEC_NAME}>
+  COMMAND_EXPAND_LISTS
+)
