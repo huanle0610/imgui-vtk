@@ -21,6 +21,7 @@
 
 // File-Specific Includes
 #include "imgui_vtk_demo.h" // Actor generator for this demo
+#include "imgui_vtk_vtu_demo.h" // Actor generator for this demo
 
 static void glfw_error_callback(int error, const char* description)
 {
@@ -31,6 +32,7 @@ int main(int argc, char* argv[])
 {
   // Setup pipeline
   auto actor = SetupDemoPipeline();
+  auto vtuActor = SetupVtuDemoPipeline();
 
   // Setup window
   glfwSetErrorCallback(glfw_error_callback);
@@ -83,7 +85,7 @@ int main(int argc, char* argv[])
 
   // Initialize VtkViewer objects
   VtkViewer vtkViewer1;
-  vtkViewer1.addActor(actor);
+  vtkViewer1.addActor(vtuActor);
 
   VtkViewer vtkViewer2;
   vtkViewer2.getRenderer()->SetBackground(0, 0, 0); // Black background
